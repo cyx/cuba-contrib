@@ -15,7 +15,8 @@ class Cuba
     env["rack.session"]
   end
 
-  autoload :Prelude,  "cuba/contrib/prelude"
-  autoload :Settings, "cuba/contrib/settings"
-  autoload :Mote,     "cuba/contrib/mote"
+  autoload :Prelude,    "cuba/contrib/prelude"
+  autoload :Settings,   "cuba/contrib/settings"
+  autoload :Mote,       "cuba/contrib/mote"
+  autoload :TextHelper, "cuba/contrib/text_helper"
 end
