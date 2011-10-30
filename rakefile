@@ -1,0 +1,4 @@
+desc "Run all tests"
+task :test do
+  exec("cutest test/*.rb")
+end
