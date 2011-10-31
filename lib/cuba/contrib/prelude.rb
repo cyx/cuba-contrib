@@ -1,3 +1,5 @@
+require "uri"
+
 class Cuba
   module Prelude
     def urlencode(str)
