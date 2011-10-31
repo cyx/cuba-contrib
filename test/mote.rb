@@ -33,5 +33,5 @@ end
 test do
   _, _, body = Cuba.call({ "PATH_INFO" => "/abs_path", "SCRIPT_NAME" => "" })
 
-  assert_response body, ["<title>Absolute</title>\n<h1>Abs Path</h1>\n"]
+  assert_response body, ["<title>Absolute</title>\n<h1>Abs Path</h1>"]
 end
