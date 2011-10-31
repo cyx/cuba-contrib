@@ -1,4 +1,6 @@
 class Cuba
+  CONTRIB_ROOT = File.expand_path("../../", File.dirname(__FILE__))
+
   def self.helper(mixin)
     include mixin
   end
@@ -18,5 +20,6 @@ class Cuba
   autoload :Prelude,    "cuba/contrib/prelude"
   autoload :Settings,   "cuba/contrib/settings"
   autoload :Mote,       "cuba/contrib/mote"
-  autoload :TextHelper, "cuba/contrib/text_helper"
+  autoload :TextHelpers, "cuba/contrib/text_helpers"
+  autoload :FormHelpers, "cuba/contrib/form_helpers"
 end

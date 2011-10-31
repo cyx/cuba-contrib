@@ -1,0 +1,13 @@
+<label>
+  <span>{{ label }}</span>
+
+  {{ input }}
+
+  % if hint
+    <em class="hint">{{ hint }}</em>
+  % end
+
+  % if error
+    <span class="error"><em>{{ error}}</em></span>
+  % end
+</label>

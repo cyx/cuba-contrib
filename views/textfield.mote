@@ -1,0 +1,1 @@
+<input type="text" {{ 'class="%s"' % params[:class] if params[:class] }} name="{{ name }}" value="{{ value }}">

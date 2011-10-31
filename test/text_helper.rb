@@ -4,7 +4,7 @@ require_relative "helper"
 
 setup do
   obj = Object.new
-  obj.extend Cuba::TextHelper
+  obj.extend Cuba::TextHelpers
 end
 
 test "truncate" do |helper|
@@ -18,7 +18,7 @@ test "markdown" do |helper|
 end
 
 test "nl2br" do |helper|
-  assert_equal "Hi<br>there<br>Joe", helper.nl2br("Hi\nthere\r\nJoe")  
+  assert_equal "Hi<br>there<br>Joe", helper.nl2br("Hi\nthere\r\nJoe")
 end
 
 test "currency" do |helper|
