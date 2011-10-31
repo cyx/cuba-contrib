@@ -12,11 +12,11 @@ class Cuba
       view(cuba_contrib_path("form"), model: record)
     end
 
-    def select_options(closure, selected = nil, prompt = nil)
+    def select_options(pairs, selected = nil, prompt = nil)
       "".tap do |ret|
         ret << option_tag(prompt, "") if prompt
 
-        closure.call.each do |label, value|
+        pairs.each do |label, value|
           ret << option_tag(label, value, selected)
         end
       end
