@@ -90,6 +90,10 @@ class Cuba
 
     def localize_errors(model, field)
       model.errors[field].map do |err|
+        unless settings.localized_errors[err]
+          raise "No localized error defined for: #{err}"
+        end
+
         settings.localized_errors[err] % { field: humanize(field) }
       end
     end
