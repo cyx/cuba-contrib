@@ -1,5 +1,7 @@
 class Cuba
   module FormHelpers
+    include Cuba::Prelude
+
     def cuba_contrib_partial(template, locals = {})
       partial(cuba_contrib_path("%s.mote" % template), locals)
     end
@@ -81,7 +83,7 @@ class Cuba
 
     def input(model, field, hint)
       cuba_contrib_partial("field",
-        label: titlecase(field),
+        label: humanize(field),
         input: yield,
         hint: hint,
         error: localize_errors(model, field).join(", ")
