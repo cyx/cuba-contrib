@@ -24,6 +24,10 @@ class Cuba
       str.to_s.tr("_", " ").gsub(/(^|\s)([a-z])/) { |char| char.upcase }
     end
 
+    def humanize(str)
+      titlecase(str.to_s.tr("_", " ").gsub(/_id$/, ""))
+    end
+
     def underscore(str)
       str.gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').downcase
     end
