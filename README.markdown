@@ -1,6 +1,6 @@
 # cuba-contrib
 
-[Cuba][cuba] is probably one of the tiniest rack based micro
+[Cuba][cuba] is probably one of the tiniest rack-based micro
 frameworks around. Weighing in at only __138 LOC__, it has proven
 itself to be a very resilient tool in various web application domains.
 Check [the list of sites][sites] built using Cuba in order to
@@ -55,7 +55,7 @@ end
 
 ### Here comes a new challenger: Mote
 
-We prefer to use our home grown templating engine called
+We prefer to use our home-grown templating engine called
 [Mote][mote]. We do that by simply loading the plugin `Cuba::Mote`:
 
 ``` ruby
