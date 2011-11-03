@@ -7,7 +7,7 @@ scope do
     end
   end
 
-  Cuba.helper Helper
+  Cuba.plugin Helper
 
   Cuba.define do
     on default do
@@ -31,7 +31,7 @@ scope do
 
   module Plugin
     def self.setup(app)
-      app.helper Number
+      app.plugin Number
     end
 
     def bar
