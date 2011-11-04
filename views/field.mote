@@ -7,7 +7,7 @@
     <em class="hint">{{ hint }}</em>
   % end
 
-  % if error
+  % if not error.to_s.empty?
     <span class="error"><em>{{ error}}</em></span>
   % end
 </label>
