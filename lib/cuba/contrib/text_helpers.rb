@@ -7,13 +7,13 @@ class Cuba
     end
 
     def truncate(str, length, ellipses = "...")
-      return str if str.length <= length
+      return str if !str || str.length <= length
 
       sprintf("%.#{length}s#{ellipses}", str)
     end
 
     def nl2br(str)
-      str.gsub(/\n|\r\n/, "<br>")
+      str.to_s.gsub(/\n|\r\n/, "<br>")
     end
 
     def currency(amount, unit = "$")
