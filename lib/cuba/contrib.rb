@@ -19,4 +19,5 @@ class Cuba
   autoload :Mote,       "cuba/contrib/mote"
   autoload :TextHelpers, "cuba/contrib/text_helpers"
   autoload :FormHelpers, "cuba/contrib/form_helpers"
+  autoload :I18N, "cuba/contrib/i18n"
 end

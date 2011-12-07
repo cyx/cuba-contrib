@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.version           = Cuba::Contrib::VERSION
   s.summary           = "Cuba plugins and utilities."
   s.description       = "Includes various helper tools for Cuba."
-  s.authors           = ["Cyril David"]
-  s.email             = ["me@cyrildavid.com"]
+  s.authors           = ["Cyril David", "Dario Castañé"]
+  s.email             = ["me@cyrildavid.com", "i@dario.im"]
   s.homepage          = "http://github.com/cyx/cuba-contrib"
 
   s.files = Dir[
@@ -20,6 +20,9 @@ Gem::Specification.new do |s|
   ]
 
   s.add_dependency "cuba"
+  s.add_dependency "mote"
+  s.add_dependency "bluecloth"
+  s.add_dependency "r18n-core"
   s.add_development_dependency "cutest"
   s.add_development_dependency "capybara"
 end
