@@ -6,7 +6,6 @@ class Cuba
       app.plugin Cuba::Settings
       app.set :template_engine, "erb"
       app.set :views, File.expand_path("views", Dir.pwd)
-      app.set :encoding, Encoding::UTF_8
     end
 
     def view(template, locals = {})
@@ -14,7 +13,7 @@ class Cuba
     end
 
     def partial(template, locals = {})
-      render("#{settings.views}/#{template}.#{settings.template_engine}", locals, default_encoding: settings.encoding)
+      render("#{settings.views}/#{template}.#{settings.template_engine}", locals, default_encoding: Encoding.default_external)
     end
 
     # Render any type of template file supported by Tilt.
