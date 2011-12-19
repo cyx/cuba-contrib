@@ -13,7 +13,7 @@ class Cuba
     end
 
     def partial(template, locals = {})
-      render("#{settings.views}/#{template}.#{settings.template_engine}", locals)
+      render("#{settings.views}/#{template}.#{settings.template_engine}", locals, default_encoding: Encoding.default_external)
     end
 
     # Render any type of template file supported by Tilt.
