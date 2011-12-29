@@ -12,13 +12,13 @@ class Cuba
       ::R18n::Filters.on :untranslated_html
     end
 
-    def set_locale(req)
+    def set_locale(req, force_default = false)
       ::R18n.set do
         ::R18n::I18n.default = settings.default_locale
         locale = get_locale_from_host
         # You can add support for path language info :) Just do it and pull request it ;)
         # locale = get_locale_from_path if locale.nil?
-        if locale.nil?
+        if locale.nil? and not force_default
           locales = ::R18n::I18n.parse_http req.env['HTTP_ACCEPT_LANGUAGE']
           if req.params['locale']
             locales.insert 0, req.params['locale']
