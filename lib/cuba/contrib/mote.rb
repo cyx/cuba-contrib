@@ -15,13 +15,10 @@ class Cuba
       mote(mote_path(template), locals)
     end
 
-    def view(template, locals = {})
-      raise NoLayout.new(self) unless settings.layout
+    def view(template, locals = {}, layout = settings.layout)
+      raise NoLayout.new(self) unless layout
 
-      partial(
-        settings.layout,
-        locals.merge(mote_vars(partial(template, locals)))
-      )
+      partial(layout, locals.merge(mote_vars(partial(template, locals))))
     end
 
     def mote_path(template)
