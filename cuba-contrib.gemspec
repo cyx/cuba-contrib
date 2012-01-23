@@ -2,7 +2,7 @@ require "./lib/cuba/contrib/version"
 
 Gem::Specification.new do |s|
   s.name              = "cuba-contrib"
-  s.version           = Cuba::Contrib::VERSION
+  s.version           = "0.1.0.rc1"
   s.summary           = "Cuba plugins and utilities."
   s.description       = "Includes various helper tools for Cuba."
   s.authors           = ["Cyril David"]
