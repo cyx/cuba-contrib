@@ -9,6 +9,9 @@ Cuba.define do
   end
 end
 
+class Admin < Cuba
+end
+
 test do
   assert_equal "bar", Cuba.foo
 end
@@ -19,6 +22,17 @@ test do
 end
 
 test do
+  assert_equal "bar", Admin.foo
+
+  Admin.foo = "baz"
+
+  assert_equal "baz", Admin.foo
+  assert_equal "bar", Cuba.foo  
+end
+
+test do
   Cuba.foo = "baz"
   assert_equal "baz", Cuba.foo
 end
+
+

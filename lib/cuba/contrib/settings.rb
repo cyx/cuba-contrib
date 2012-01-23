@@ -6,7 +6,12 @@ class Cuba
 
     module ClassMethods
       def set(key, value)
-        metaclass.send :attr_accessor, key
+        metaclass.send :attr_writer, key
+        metaclass.module_eval %{
+          def #{key}
+            @#{key} ||= #{value.inspect}
+          end
+        }
 
         send :"#{key}=", value
       end
