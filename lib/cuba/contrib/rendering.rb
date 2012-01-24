@@ -34,9 +34,16 @@ class Cuba
     #   render("layout.haml") { render("home.haml") }
     #
     def render(template, locals = {}, options = {}, &block)
-      _cache.fetch(template, locals) {
+      _cache.fetch(template) {
         Tilt.new(template, 1, options)
       }.render(self, locals, &block)
     end
+
+    # @private Used internally by #render to cache the
+    #          Tilt templates.
+    def _cache
+      Thread.current[:_cache] ||= Tilt::Cache.new
+    end
+    private :_cache
   end
 end
