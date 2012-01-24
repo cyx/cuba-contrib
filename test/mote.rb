@@ -1,7 +1,7 @@
 require_relative "helper"
 
 Cuba.plugin Cuba::Mote
-
+Cuba.use Rack::Session::Cookie
 Cuba.set :views, "./test/views"
 
 Cuba.define do
