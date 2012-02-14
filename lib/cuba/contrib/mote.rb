@@ -22,7 +22,7 @@ class Cuba
     def mote_path(template)
       return template if template.end_with?(".mote")
 
-      File.expand_path("#{template}.mote", settings[:views])
+      File.join(settings[:views], "#{template}.mote")
     end
 
     def mote_vars(content)
@@ -37,7 +37,7 @@ class Cuba
       end
 
       def message
-        "Missing Layout: Try doing #{instance.class}.set :layout, 'layout'"
+        "Missing Layout: Try doing #{instance.class}.settings[:layout] = 'layout'"
       end
     end
   end
