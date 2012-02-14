@@ -117,17 +117,16 @@ that's exactly how the `markdown` helper is written in
 `Cuba::TextHelpers`.
 
 A more complicated plugin for example, will make use of
-`Cuba::Settings` to provide default values:
+`Cuba.settings` to provide default values:
 
 ``` ruby
 module Rendering
   def self.setup(app)
-    app.plugin Cuba::Settings # we need this for default values
-    app.set :template_engine, "erb"
+    app.settings[:template_engine] = "erb"
   end
 
   def partial(template, locals = {})
-    render("#{template}.#{settings.template_engine}", locals)
+    render("#{template}.#{settings[:template_engine]}", locals)
   end
 end
 
