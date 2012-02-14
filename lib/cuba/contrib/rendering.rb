@@ -3,17 +3,17 @@ require "tilt"
 class Cuba
   module Rendering
     def self.setup(app)
-      app.plugin Cuba::Settings
-      app.set :template_engine, "erb"
-      app.set :views, File.expand_path("views", Dir.pwd)
+      app.settings[:template_engine] = "erb"
+      app.settings[:views] = File.expand_path("views", Dir.pwd)
+      app.settings[:layout] = "layout"
     end
 
-    def view(template, locals = {}, layout = "layout")
+    def view(template, locals = {}, layout = settings[:layout])
       partial(layout, { content: partial(template, locals) }.merge(locals))
     end
 
     def partial(template, locals = {})
-      render("#{settings.views}/#{template}.#{settings.template_engine}",
+      render("#{settings[:views]}/#{template}.#{settings[:template_engine]}",
         locals, default_encoding: Encoding.default_external)
     end
 

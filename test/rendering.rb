@@ -1,7 +1,7 @@
 require_relative "helper"
 
 Cuba.plugin Cuba::Rendering
-Cuba.views = "./test/views"
+Cuba.settings[:views] = "./test/views"
 
 Cuba.define do
   on "home" do
@@ -26,7 +26,7 @@ test "view" do
 end
 
 test "partial with str as engine" do
-  Cuba.template_engine = "str"
+  Cuba.settings[:template_engine] = "str"
 
   _, _, body = Cuba.call({ "PATH_INFO" => "/about", "SCRIPT_NAME" => "/" })
 
@@ -34,7 +34,7 @@ test "partial with str as engine" do
 end
 
 test "view with str as engine" do
-  Cuba.template_engine = "str"
+  Cuba.settings[:template_engine] = "str"
 
   _, _, body = Cuba.call({ "PATH_INFO" => "/home", "SCRIPT_NAME" => "/" })
 

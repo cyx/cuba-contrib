@@ -5,17 +5,15 @@ class Cuba
     include ::Mote::Helpers
 
     def self.setup(app)
-      app.plugin Cuba::Settings
-
-      app.set :views,  File.expand_path("views", Dir.pwd)
-      app.set :layout, "layout"
+      app.settings[:views]  = File.expand_path("views", Dir.pwd)
+      app.settings[:layout] = "layout"
     end
 
     def partial(template, locals = {})
       mote(mote_path(template), locals)
     end
 
-    def view(template, locals = {}, layout = settings.layout)
+    def view(template, locals = {}, layout = settings[:layout])
       raise NoLayout.new(self) unless layout
 
       partial(layout, locals.merge(mote_vars(partial(template, locals))))
@@ -24,7 +22,7 @@ class Cuba
     def mote_path(template)
       return template if template.end_with?(".mote")
 
-      File.expand_path("#{template}.mote", settings.views)
+      File.expand_path("#{template}.mote", settings[:views])
     end
 
     def mote_vars(content)
