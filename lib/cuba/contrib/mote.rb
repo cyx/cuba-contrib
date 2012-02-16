@@ -5,8 +5,8 @@ class Cuba
     include ::Mote::Helpers
 
     def self.setup(app)
-      app.settings[:views]  = File.expand_path("views", Dir.pwd)
-      app.settings[:layout] = "layout"
+      app.settings[:views]  ||= File.expand_path("views", Dir.pwd)
+      app.settings[:layout] ||= "layout"
     end
 
     def partial(template, locals = {})

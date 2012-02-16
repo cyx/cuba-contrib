@@ -1,8 +1,19 @@
 require_relative "helper"
 
+test "doesn't override already existing settings" do
+  Cuba.settings[:views] = "./templates"
+  Cuba.settings[:layout] = "guest"
+
+  Cuba.plugin Cuba::Mote
+
+  assert_equal "./templates", Cuba.settings[:views]
+  assert_equal "guest", Cuba.settings[:layout]
+end
+
 Cuba.plugin Cuba::Mote
 Cuba.use Rack::Session::Cookie
 Cuba.settings[:views] = "./test/views"
+Cuba.settings[:layout] = "layout"
 
 Cuba.define do
   on "frag" do
