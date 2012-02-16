@@ -21,17 +21,17 @@ end
 test do
   _, _, body = Cuba.call({ "PATH_INFO" => "/", "SCRIPT_NAME" => "" })
 
-  assert_response body, ["<title>Hola</title>\n<h1>Home</h1>"]
+  assert_response body, ["<title>Hola</title>\n<h1>Home</h1>\n\n"]
 end
 
 test do
   _, _, body = Cuba.call({ "PATH_INFO" => "/frag", "SCRIPT_NAME" => "" })
 
-  assert_response body, ["<h1>Bar</h1>"]
+  assert_response body, ["<h1>Bar</h1>\n"]
 end
 
 test do
   _, _, body = Cuba.call({ "PATH_INFO" => "/abs_path", "SCRIPT_NAME" => "" })
 
-  assert_response body, ["<title>Absolute</title>\n<h1>Abs Path</h1>"]
+  assert_response body, ["<title>Absolute</title>\n<h1>Abs Path</h1>\n\n"]
 end
