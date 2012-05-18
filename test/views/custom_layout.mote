@@ -1,0 +1,2 @@
+<title>Custom Layout: {{title}}</title>
+{{ content }}
