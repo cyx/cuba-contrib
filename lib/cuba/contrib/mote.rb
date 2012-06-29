@@ -5,28 +5,33 @@ class Cuba
     include ::Mote::Helpers
 
     def self.setup(app)
-      app.settings[:views]  ||= File.expand_path("views", Dir.pwd)
-      app.settings[:layout] ||= "layout"
+      app.settings[:mote] ||= {}
+      app.settings[:mote][:views]  ||= File.expand_path("views", Dir.pwd)
+      app.settings[:mote][:layout] ||= "layout"
     end
 
     def partial(template, locals = {})
       mote(mote_path(template), locals)
     end
 
-    def view(template, locals = {}, layout = settings[:layout])
+    def view(template, locals = {}, layout = settings[:mote][:layout])
       raise NoLayout.new(self) unless layout
 
       partial(layout, locals.merge(mote_vars(partial(template, locals))))
     end
 
+    def render(template, locals = {}, layout = settings[:mote][:layout])
+      res.write view(template, locals, layout)
+    end
+
     def mote_path(template)
       return template if template.end_with?(".mote")
 
-      File.join(settings[:views], "#{template}.mote")
+      File.join(settings[:mote][:views], "#{template}.mote")
     end
 
     def mote_vars(content)
-      { content: content, session: session }
+      { context: self, content: content }
     end
 
     class NoLayout < StandardError
