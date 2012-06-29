@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "cuba-contrib"
-  s.version           = "3.0.1"
+  s.version           = "3.0.1.rc1"
   s.summary           = "Cuba plugins and utilities."
   s.description       = "Includes various helper tools for Cuba."
   s.authors           = ["Cyril David"]
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     "views/*.mote"
   ]
 
-  s.add_dependency "cuba", "~> 3.0"
+  s.add_dependency "cuba", "3.0.1.rc3"
   s.add_development_dependency "cutest"
   s.add_development_dependency "capybara"
 end
