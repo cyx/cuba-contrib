@@ -1,0 +1,2 @@
+partial1
+{{ this.partial "partial2" }}

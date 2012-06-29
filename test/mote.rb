@@ -29,6 +29,10 @@ Cuba.define do
     render("home", title: "Hola")
   end
 
+  on "partial-fu" do
+    res.write partial("partial1")
+  end
+
   on "abs_path" do
     res.write view("./test/views/custom/abs_path.mote", title: "Absolute")
   end
@@ -46,6 +50,15 @@ test "render" do
   assert_response body, ["<title>Hola</title>\n<h1>Home</h1>\n\n"]
 end
 
+test "partial-fu" do
+  # We verify that nesting partials and contexts are passed along properly.
+  _, _, body = Cuba.call({ "PATH_INFO" => "/partial-fu/A", "SCRIPT_NAME" => "" })
+  assert_response body, ["partial1\npartial2\n/partial-fu/A\n\n"]
+
+  # And that we're able to use req.path in the inner partials without an issue.
+  _, _, body = Cuba.call({ "PATH_INFO" => "/partial-fu/B", "SCRIPT_NAME" => "" })
+  assert_response body, ["partial1\npartial2\n/partial-fu/B\n\n"]
+end
 
 test "partial" do
   _, _, body = Cuba.call({ "PATH_INFO" => "/frag", "SCRIPT_NAME" => "" })

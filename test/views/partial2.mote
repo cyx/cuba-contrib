@@ -1,0 +1,2 @@
+partial2
+{{ this.req.path }}

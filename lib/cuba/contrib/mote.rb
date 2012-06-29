@@ -11,7 +11,7 @@ class Cuba
     end
 
     def partial(template, locals = {})
-      mote(mote_path(template), locals)
+      mote(mote_path(template), locals.merge(this: self))
     end
 
     def view(template, locals = {}, layout = settings[:mote][:layout])
@@ -31,7 +31,7 @@ class Cuba
     end
 
     def mote_vars(content)
-      { context: self, content: content }
+      { content: content }
     end
 
     class NoLayout < StandardError
