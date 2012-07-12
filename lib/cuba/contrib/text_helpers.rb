@@ -1,9 +1,7 @@
 class Cuba
   module TextHelpers
     def markdown(str)
-      require "bluecloth"
-
-      BlueCloth.new(str).to_html
+      Markdown.new(str).to_html
     end
 
     def truncate(str, length, ellipses = "...")
@@ -20,16 +18,23 @@ class Cuba
       "#{unit} %.2f" % amount
     end
 
-    def titlecase(str)
-      str.to_s.tr("_", " ").gsub(/(^|\s)([a-z])/) { |char| char.upcase }
+    def delimit(number, delimiter = ",")
+      number.to_s.gsub(%r{(\d)(?=(\d\d\d)+(?!\d))}, "\\1#{delimiter}")
     end
 
-    def humanize(str)
-      titlecase(str.to_s.tr("_", " ").gsub(/_id$/, ""))
+    def titlecase(str)
+      res = str.to_s.dup
+      res.tr!("_", " ")
+      res.gsub!(/(^|\s)([a-z])/) { |char| char.upcase }
+      res
     end
 
     def underscore(str)
-      str.gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').downcase
+      res = str.to_s.dup
+      res.gsub!(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+      res.gsub!(/([a-z\d])([A-Z])/,'\1_\2')
+      res.downcase!
+      res
     end
   end
 end
