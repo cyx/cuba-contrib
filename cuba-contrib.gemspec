@@ -13,8 +13,7 @@ Gem::Specification.new do |s|
     "rakefile",
     "lib/**/*.rb",
     "*.gemspec",
-    "test/*.*",
-    "views/*.mote"
+    "test/*.*"
   ]
 
   s.add_dependency "cuba", "3.0.1.rc3"

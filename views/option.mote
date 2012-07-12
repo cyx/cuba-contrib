@@ -1,1 +1,0 @@
-<option {{ 'selected="selected"' if selected == value }} value="{{ h(value) }}">{{ h(label) }}</option>
