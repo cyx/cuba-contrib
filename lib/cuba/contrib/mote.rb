@@ -30,6 +30,8 @@ class Cuba
       File.join(settings[:mote][:views], "#{template}.mote")
     end
 
+    # DEPRECATED: this will be removed in a future version. Use the
+    # `this` context variable instead.
     def mote_vars(content)
       { content: content }
     end
