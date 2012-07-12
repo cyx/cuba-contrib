@@ -1,7 +1,7 @@
 class Cuba
   module With
     def with(dict = {})
-      old, env["cuba.vars"] = vars, dict
+      old, env["cuba.vars"] = vars, vars.merge(dict)
       yield
     ensure
       env["cuba.vars"] = old
