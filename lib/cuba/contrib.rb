@@ -1,8 +1,6 @@
 class Cuba
-  CONTRIB_ROOT = File.expand_path("../../", File.dirname(__FILE__))
-
-  require "cuba/contrib/prelude"
-  require "cuba/contrib/mote"
-  require "cuba/contrib/text_helpers"
-  require "cuba/contrib/with"
+  require "cuba/prelude"
+  require "cuba/mote"
+  require "cuba/text_helpers"
+  require "cuba/with"
 end
