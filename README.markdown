@@ -3,7 +3,7 @@
 [Cuba][cuba] is probably one of the tiniest rack-based micro
 frameworks around. Weighing in at only __138 LOC__, it has proven
 itself to be a very resilient tool in various web application domains.
-Check [the list of sites][sites] built using Cuba in order to
+Check [the list of sites][cuba] built using Cuba in order to
 grasp the endless possibilities.
 
 ## STEP 1: Cuba::Prelude
@@ -76,16 +76,20 @@ end
 ```
 
 This assumes that you have a `views` folder, containing a `home.mote`
-and an `about.mote`.
+and an `about.mote`. Your layout defaults to `layout.mote`.
 
 ### Classic templating needs
 
+**Note**: as of Cuba 3.0, the plugin architecture of `cuba-contrib` has
+been merged into the core codebase. The following example should work with
+Cuba 3.0 without even requiring `cuba-contrib`.
+
 ``` ruby
 require "cuba"
-require "cuba/contrib"
+require "cuba/render"
 
-Cuba.plugin Cuba::Rendering
-Cuba.set :template_engine, "haml"
+Cuba.plugin Cuba::Render
+Cuba.settings[:render][:template_engine] = "haml"
 
 Cuba.define do
   on "home" do
@@ -120,22 +124,22 @@ A more complicated plugin for example, will make use of
 `Cuba.settings` to provide default values:
 
 ``` ruby
-module Rendering
+module MarkdownView
   def self.setup(app)
-    app.settings[:template_engine] = "erb"
+    app.settings[:markdown_view] ||= {}
+    app.settings[:markdown_view][:views] = "markdown"
   end
 
-  def partial(template, locals = {})
-    render("#{template}.#{settings[:template_engine]}", locals)
+  def markdown_view(template)
+    data = File.read("#{settings[:markdown_view][:views]}/#{template}.markdown")
+
+    res.write Markdown.new(data).to_html
   end
 end
 
-Cuba.plugin Rendering
+Cuba.plugin MarkdownView
 ```
 
-This sample plugin actually resembles how `Cuba::Rendering` works.
-
 [cuba]: http://cuba.is
-[sites]: http://cuba.is/sites
 [mote]: http://github.com/soveran/mote
 [unix]: http://en.wikipedia.org/wiki/Unix_philosophy
