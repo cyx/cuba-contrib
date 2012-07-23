@@ -11,7 +11,7 @@ class Cuba
     end
 
     def partial(template, locals = {})
-      mote(mote_path(template), locals.merge(this: self))
+      mote(mote_path(template), locals.merge(this: self), TOPLEVEL_BINDING)
     end
 
     def view(template, locals = {}, layout = settings[:mote][:layout])

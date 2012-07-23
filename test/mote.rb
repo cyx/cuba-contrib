@@ -36,6 +36,20 @@ Cuba.define do
   on "abs_path" do
     res.write view("./test/views/custom/abs_path.mote", title: "Absolute")
   end
+
+  def foo
+    req.path
+  end
+
+  on "foo" do
+    on "right" do
+      res.write partial("foo-right")
+    end
+
+    on "wrong" do
+      res.write partial("foo-wrong")
+    end
+  end
 end
 
 test "view" do
@@ -78,4 +92,14 @@ test "use of absolute mote path for the layout" do
   _, _, body = Cuba.call({ "PATH_INFO" => "/", "SCRIPT_NAME" => "" })
 
   assert_response body, ["<title>Custom Layout: Hola</title>\n<h1>Home</h1>\n\n"]
+end
+
+test "attempting to use defined variables in cuba context is a problem" do
+  assert_raise NameError do
+    Cuba.call({ "PATH_INFO" => "/foo/wrong", "SCRIPT_NAME" => "" })
+  end
+
+  _, _, body = Cuba.call({ "PATH_INFO" => "/foo/right", "SCRIPT_NAME" => "" })
+
+  assert_response body, ["/foo/right\n"]
 end
