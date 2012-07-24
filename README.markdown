@@ -61,6 +61,7 @@ We prefer to use our home-grown templating engine called
 ``` ruby
 require "cuba"
 require "cuba/contrib"
+require "mote"
 
 Cuba.plugin Cuba::Mote
 
@@ -71,6 +72,11 @@ Cuba.define do
 
   on "about" do
     res.write partial("about")
+  end
+
+  # Or you can use `render` as a shortcut to `res.write view(...)`.
+  on "contact" do
+    render("contact")
   end
 end
 ```
@@ -107,9 +113,11 @@ end
 Authoring your own plugins is pretty straightforward.
 
 ``` ruby
+require "bluecloth"
+
 module MyOwnHelper
   def markdown(str)
-    BlueCloth.new(str).to_html
+    Markdown.new(str).to_html
   end
 end
 
