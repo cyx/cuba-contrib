@@ -82,7 +82,21 @@ end
 ```
 
 This assumes that you have a `views` folder, containing a `home.mote`
-and an `about.mote`. Your layout defaults to `layout.mote`.
+and an `about.mote`. Your layout defaults to `layout.mote`.  You can
+render the inner content into the layout using the `{{content}}` tag,
+for example:
+
+``` html
+<html>
+  <head>
+    <title>Mote Layout</title>
+  </head>
+  <body>
+    <h1>Hello, mote!</h1>
+    {{ content }}
+  </body>
+</html>
+```
 
 ### Classic templating needs
 
