@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency "cuba", "~> 3.1"
   s.add_development_dependency "cutest"
-  s.add_development_dependency "mote", "~> 1.0"
+  s.add_dependency "mote", "~> 1.0"
 end
